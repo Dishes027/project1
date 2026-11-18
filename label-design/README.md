@@ -10,3 +10,7 @@
 สเปกแนะนำ: สติ๊กเกอร์ PP/กระดาษอาร์ตมัน เคลือบเงา ไดคัทมุมมน รัศมี 4.5 มม.
 
 แก้ไข: เปิด `source/label.html` แล้วรัน `node source/render.js "" out.png 6.25` (600 dpi) — เปลี่ยนรูปหน้าได้ที่ `source/face.png` (สี่เหลี่ยมจัตุรัส)
+
+## ภาพสินค้า (Product shot)
+`madiao-product-shot.jpg` — 2000×2000 px สำหรับรูปหลักร้านค้าออนไลน์/โพสต์ขาย
+แก้ไข: `source/product-shot/hero.html` แล้วรัน `node source/product-shot/render_hero.js out.png 2`

@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<title>Madiao Hero</title>
+<style>
+  html, body { margin: 0; padding: 0; background: #000; }
+  svg { display: block; width: 1000px; height: 1000px; }
+</style>
+</head>
+<body>
+<svg id="hero" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+  <defs>
+    <radialGradient id="bg" cx="500" cy="440" r="760" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#d0180c"/>
+      <stop offset="0.3" stop-color="#7a0707"/>
+      <stop offset="0.65" stop-color="#2a0202"/>
+      <stop offset="1" stop-color="#070000"/>
+    </radialGradient>
+    <radialGradient id="halo" cx="500" cy="500" r="430" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffc23a" stop-opacity="0.9"/>
+      <stop offset="0.45" stop-color="#ff5a00" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#ff0000" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="flameG" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#fff2a0"/>
+      <stop offset="0.3" stop-color="#ffc21a"/>
+      <stop offset="0.65" stop-color="#ff6a00"/>
+      <stop offset="1" stop-color="#d90f00"/>
+    </linearGradient>
+    <linearGradient id="floor" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3a0503"/>
+      <stop offset="0.35" stop-color="#160000"/>
+      <stop offset="1" stop-color="#050000"/>
+    </linearGradient>
+    <radialGradient id="floorGlow" cx="500" cy="880" r="420" gradientTransform="translate(0 616) scale(1 0.3)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ff7a1a" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#ff2a00" stop-opacity="0"/>
+    </radialGradient>
+    <!-- metallic foil -->
+    <linearGradient id="foil" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#6f767e"/>
+      <stop offset="0.06" stop-color="#d9dee3"/>
+      <stop offset="0.12" stop-color="#8e959d"/>
+      <stop offset="0.3" stop-color="#f4f6f8"/>
+      <stop offset="0.5" stop-color="#aab1b8"/>
+      <stop offset="0.7" stop-color="#fbfcfd"/>
+      <stop offset="0.88" stop-color="#8b929a"/>
+      <stop offset="0.94" stop-color="#dfe3e8"/>
+      <stop offset="1" stop-color="#666d75"/>
+    </linearGradient>
+    <linearGradient id="foilWarm" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffd9a0" stop-opacity="0.15"/>
+      <stop offset="0.6" stop-color="#ff7a30" stop-opacity="0.12"/>
+      <stop offset="1" stop-color="#ff3a00" stop-opacity="0.16"/>
+    </linearGradient>
+    <pattern id="crimp" width="4" height="4" patternUnits="userSpaceOnUse">
+      <rect width="2" height="4" fill="#000" fill-opacity="0.16"/>
+      <rect x="2" width="1" height="4" fill="#fff" fill-opacity="0.35"/>
+    </pattern>
+    <linearGradient id="edgeShade" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#000" stop-opacity="0.55"/>
+      <stop offset="0.12" stop-color="#000" stop-opacity="0"/>
+      <stop offset="0.88" stop-color="#000" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000" stop-opacity="0.55"/>
+    </linearGradient>
+    <linearGradient id="topShade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#000" stop-opacity="0.45"/>
+      <stop offset="0.06" stop-color="#000" stop-opacity="0"/>
+      <stop offset="0.93" stop-color="#000" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000" stop-opacity="0.5"/>
+    </linearGradient>
+    <linearGradient id="streak" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#fff" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#fff" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+
+    <clipPath id="winClip"><path id="winPath" d="M272,204 L728,204 L728,808 Q728,830 706,830 L294,830 Q272,830 272,808 Z"/></clipPath>
+
+    <filter id="flicker" x="-10%" y="-20%" width="120%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.012 0.028" numOctaves="2" seed="11" result="t"/>
+      <feDisplacementMap in="SourceGraphic" in2="t" scale="34" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="blur6" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="6"/></filter>
+    <filter id="blur14" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="14"/></filter>
+    <filter id="blur3" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2.2"/></filter>
+    <filter id="sparkGlow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="4" result="b"/>
+      <feColorMatrix in="b" type="matrix" values="1 0 0 0 0  0 0.9 0 0 0  0 0 0.5 0 0  0 0 0 1.8 0" result="g"/>
+      <feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="pieceShadow" x="-30%" y="-30%" width="160%" height="170%">
+      <feDropShadow dx="0" dy="8" stdDeviation="7" flood-color="#000" flood-opacity="0.75"/>
+    </filter>
+    <filter id="warm" x="0" y="0" width="100%" height="100%">
+      <feComponentTransfer>
+        <feFuncR type="linear" slope="1.08"/>
+        <feFuncG type="linear" slope="1.0"/>
+        <feFuncB type="linear" slope="0.9"/>
+      </feComponentTransfer>
+    </filter>
+    <path id="spark" d="M0,-100 C10,-14 14,-10 100,0 C14,10 10,14 0,100 C-10,14 -14,10 -100,0 C-14,-10 -10,-14 0,-100Z"/>
+  </defs>
+
+  <!-- BACKDROP -->
+  <rect width="1000" height="1000" fill="url(#bg)"/>
+  <g id="rays" opacity="0.55"></g>
+  <circle cx="500" cy="500" r="430" fill="url(#halo)"/>
+  <g id="bokeh"></g>
+  <g id="flamesBack" filter="url(#flicker)"></g>
+
+  <!-- FLOOR -->
+  <rect y="868" width="1000" height="132" fill="url(#floor)"/>
+  <rect y="868" width="1000" height="132" fill="url(#floorGlow)"/>
+  <line x1="0" y1="868" x2="1000" y2="868" stroke="#ff8a3a" stroke-opacity="0.25" stroke-width="1.5"/>
+  <ellipse cx="500" cy="874" rx="270" ry="18" fill="#000" opacity="0.85" filter="url(#blur14)"/>
+  <ellipse cx="500" cy="870" rx="230" ry="7" fill="#000" opacity="0.9" filter="url(#blur3)"/>
+
+  <!-- POUCH -->
+  <g id="pouch">
+    <!-- reflection on floor -->
+    <g opacity="0.18" transform="translate(0 1742) scale(1 -1)" filter="url(#blur3)">
+      <path d="M252,800 L748,800 L748,846 Q748,872 722,872 L278,872 Q252,872 252,846 Z" fill="url(#foil)"/>
+    </g>
+    <!-- body -->
+    <path id="body" d="M258,118 Q250,118 250,126 L250,250 C246,450 247,650 252,846 Q252,872 278,872 L722,872 Q748,872 748,846 C753,650 754,450 750,250 L750,126 Q750,118 742,118 Z" fill="url(#foil)"/>
+    <path d="M258,118 Q250,118 250,126 L250,250 C246,450 247,650 252,846 Q252,872 278,872 L722,872 Q748,872 748,846 C753,650 754,450 750,250 L750,126 Q750,118 742,118 Z" fill="url(#foilWarm)"/>
+    <!-- top heat seal with crimp texture -->
+    <rect x="250" y="118" width="500" height="46" fill="url(#crimp)"/>
+    <line x1="250" y1="164" x2="750" y2="164" stroke="#5c636b" stroke-width="1.5"/>
+    <line x1="250" y1="165.5" x2="750" y2="165.5" stroke="#fff" stroke-opacity="0.7" stroke-width="1"/>
+    <!-- tear notches -->
+    <path d="M250,174 L258,178 L250,182 Z" fill="#2a0000"/>
+    <path d="M750,174 L742,178 L750,182 Z" fill="#2a0000"/>
+    <!-- zip -->
+    <rect x="252" y="186" width="496" height="7" fill="#7d848c"/>
+    <rect x="252" y="186" width="496" height="2" fill="#fff" fill-opacity="0.85"/>
+    <rect x="252" y="193" width="496" height="2" fill="#3e444a" fill-opacity="0.8"/>
+
+    <!-- clear window with real contents + new label -->
+    <g clip-path="url(#winClip)">
+      <image href="window.jpg" x="268" y="204" width="464" height="631" preserveAspectRatio="xMidYMin slice" filter="url(#warm)"/>
+      <rect x="272" y="204" width="456" height="626" fill="url(#edgeShade)"/>
+      <rect x="272" y="204" width="456" height="626" fill="url(#topShade)"/>
+      <!-- film reflections -->
+      <rect x="282" y="204" width="34" height="626" fill="url(#streak)" opacity="0.55" filter="url(#blur6)"/>
+      <rect x="680" y="204" width="22" height="626" fill="url(#streak)" opacity="0.65" filter="url(#blur3)"/>
+      <path d="M560,204 L640,204 L420,830 L340,830 Z" fill="#fff" opacity="0.07" filter="url(#blur14)"/>
+      <path d="M690,204 L712,204 L480,830 L458,830 Z" fill="#fff" opacity="0.10" filter="url(#blur6)"/>
+      <rect x="272" y="204" width="456" height="626" fill="#fff" opacity="0.03"/>
+    </g>
+    <use href="#winPath" fill="none" stroke="#c9ced4" stroke-opacity="0.85" stroke-width="2"/>
+    <use href="#winPath" fill="none" stroke="#000" stroke-opacity="0.25" stroke-width="6" filter="url(#blur3)"/>
+
+    <!-- bottom gusset seam -->
+    <path d="M262,842 Q500,822 738,842" fill="none" stroke="#5c636b" stroke-opacity="0.8" stroke-width="2"/>
+    <path d="M262,844 Q500,824 738,844" fill="none" stroke="#fff" stroke-opacity="0.6" stroke-width="1"/>
+    <!-- side highlights / edge rim light -->
+    <path d="M252,130 C247,450 248,650 254,850" fill="none" stroke="#ffb070" stroke-opacity="0.6" stroke-width="2.5"/>
+    <path d="M748,130 C753,450 752,650 746,850" fill="none" stroke="#ffb070" stroke-opacity="0.6" stroke-width="2.5"/>
+  </g>
+
+  <g id="flamesFront" filter="url(#flicker)" opacity="0.95"></g>
+  <g id="pieces"></g>
+  <g id="embers"></g>
+  <g id="sparkles"></g>
+</svg>
+
+<script>
+const NS = 'http://www.w3.org/2000/svg';
+const $ = id => document.getElementById(id);
+function el(tag, attrs = {}, parent) {
+  const e = document.createElementNS(NS, tag);
+  for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, v);
+  if (parent) parent.appendChild(e);
+  return e;
+}
+let seed = 88;
+const rnd = () => (seed = (seed * 1664525 + 1013904223) % 4294967296) / 4294967296;
+
+// sunburst
+(() => {
+  const g = $('rays'), cx = 500, cy = 470, R = 1300, n = 40;
+  for (let i = 0; i < n; i += 2) {
+    const a1 = (i / n) * Math.PI * 2, a2 = ((i + 1) / n) * Math.PI * 2;
+    el('path', { d: `M${cx},${cy} L${cx + R * Math.cos(a1)},${cy + R * Math.sin(a1)} L${cx + R * Math.cos(a2)},${cy + R * Math.sin(a2)} Z`, fill: '#ff4a10', 'fill-opacity': 0.13 }, g);
+  }
+})();
+
+// bokeh
+(() => {
+  const g = $('bokeh');
+  for (let i = 0; i < 26; i++) {
+    const x = rnd() * 1000, y = rnd() * 760, r = 8 + rnd() * 26;
+    el('circle', { cx: x, cy: y, r, fill: rnd() > 0.5 ? '#ffb347' : '#ff5a2a', 'fill-opacity': 0.08 + rnd() * 0.12, filter: 'url(#blur3)' }, g);
+  }
+})();
+
+// flame wall: tongues rising from the floor, tallest just beside the pouch
+function flameWall(g, opts) {
+  for (const L of opts.layers) {
+    for (let i = 0; i < L.n; i++) {
+      const x = opts.x0 + (opts.x1 - opts.x0) * (i + rnd() * 0.8) / L.n;
+      const dist = Math.min(Math.abs(x - 250), Math.abs(x - 750));
+      const peak = Math.exp(-(dist * dist) / (2 * 120 * 120));
+      const h = (L.h[0] + rnd() * (L.h[1] - L.h[0])) * (0.45 + 0.75 * peak);
+      const w = L.w * (0.7 + rnd() * 0.6);
+      const by = opts.base, tx = x + (rnd() - 0.5) * 60 + (x < 500 ? -18 : 18), ty = by - h;
+      const c1 = (rnd() - 0.5) * w * 2.4;
+      el('path', {
+        d: `M${x - w},${by} C${x - w * 1.1},${by - h * 0.45} ${tx + c1 - w * 0.3},${by - h * 0.7} ${tx},${ty} C${tx + c1 + w * 0.3},${by - h * 0.65} ${x + w * 1.1},${by - h * 0.4} ${x + w},${by} Z`,
+        fill: L.fill, 'fill-opacity': L.op
+      }, g);
+    }
+  }
+}
+flameWall($('flamesBack'), { x0: 20, x1: 980, base: 880, layers: [
+  { n: 30, h: [260, 520], w: 36, fill: '#c40d00', op: 0.95 },
+  { n: 26, h: [180, 380], w: 30, fill: 'url(#flameG)', op: 0.95 },
+  { n: 22, h: [90, 200], w: 22, fill: '#ffe680', op: 0.85 },
+]});
+// low licking flames in front of the floor line (sides only, keep pouch clear)
+(() => {
+  const g = $('flamesFront');
+  flameWall(g, { x0: 0, x1: 230, base: 900, layers: [
+    { n: 7, h: [60, 130], w: 22, fill: 'url(#flameG)', op: 0.9 },
+    { n: 6, h: [30, 70], w: 14, fill: '#fff2a0', op: 0.8 } ]});
+  flameWall(g, { x0: 770, x1: 1000, base: 900, layers: [
+    { n: 7, h: [60, 130], w: 22, fill: 'url(#flameG)', op: 0.9 },
+    { n: 6, h: [30, 70], w: 14, fill: '#fff2a0', op: 0.8 } ]});
+})();
+
+// crackling pieces (real cut-outs from the product photo)
+(() => {
+  const g = $('pieces');
+  const P = [
+    // file, w, h, x, y, rot, scale, blur(floating)
+    ['piece0.png', 410, 354, 150, 905, -8, 0.62, 0],
+    ['piece1.png', 277, 233, 850, 915, 10, 0.78, 0],
+    ['piece2.png', 164, 128, 370, 942, 16, 0.80, 0],
+    ['piece5.png', 186, 86, 640, 950, -6, 0.85, 0],
+    ['piece3.png', 157, 137, 520, 960, -20, 0.7, 0],
+    ['piece6.png', 89, 190, 300, 958, 70, 0.55, 0],
+    ['piece7.png', 125, 132, 735, 955, 30, 0.75, 0],
+    // floating, exploding out of the fire
+    ['piece4.png', 127, 133, 140, 360, -28, 0.75, 1.2],
+    ['piece10.png', 95, 66, 860, 300, 22, 0.95, 1.6],
+    ['piece11.png', 80, 62, 205, 600, 40, 0.8, 0.8],
+    ['piece12.png', 65, 53, 820, 560, -30, 0.95, 0.6],
+    ['piece3.png', 157, 137, 880, 760, 50, 0.5, 0],
+    ['piece2.png', 164, 128, 95, 760, -40, 0.5, 0],
+  ];
+  for (const [f, w, h, x, y, r, s, b] of P) {
+    const grp = el('g', { transform: `translate(${x} ${y}) rotate(${r}) scale(${s})`, filter: 'url(#pieceShadow)' }, g);
+    const img = el('image', { href: f, x: -w / 2, y: -h / 2, width: w, height: h }, grp);
+    if (b) img.setAttribute('style', `filter: blur(${b}px) brightness(1.05)`);
+  }
+})();
+
+// embers
+(() => {
+  const g = $('embers');
+  for (let i = 0; i < 70; i++) {
+    const x = rnd() * 1000, y = 40 + rnd() * 820;
+    if (x > 255 && x < 745 && y > 110 && y < 870) continue;
+    el('circle', { cx: x, cy: y, r: 1.2 + rnd() * 3.2, fill: rnd() > 0.45 ? '#ffd23a' : '#ff7a1a', 'fill-opacity': 0.6 + rnd() * 0.4, filter: 'url(#sparkGlow)' }, g);
+  }
+})();
+
+// glints on the foil (วับวาว)
+(() => {
+  const g = $('sparkles');
+  [[252, 228, 26], [746, 300, 34], [700, 168, 18], [258, 640, 16], [746, 810, 22], [330, 130, 14], [600, 870, 12]].forEach(([x, y, s]) =>
+    el('use', { href: '#spark', transform: `translate(${x} ${y}) scale(${s / 100})`, fill: '#fff', filter: 'url(#sparkGlow)' }, g));
+})();
+
+Promise.all([...document.images].map(i => i.decode ? i.decode().catch(() => {}) : 0)).then(() => setTimeout(() => document.title = 'ready', 300));
+</script>
+</body>
+</html>
