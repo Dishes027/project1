@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<title>Madiao Label</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+  @page { size: 111mm 154mm; margin: 0; }
+  html, body { margin: 0; padding: 0; background: #000; }
+  svg { display: block; width: 111mm; height: 154mm; }
+  body.trim svg { width: 105mm; height: 148mm; }
+</style>
+</head>
+<body>
+<!-- 0.1 mm units. Full bleed 1110 x 1540, trim 30..1080 x 30..1510 (A6 105x148mm) -->
+<svg id="lbl" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1110 1540">
+  <defs>
+    <radialGradient id="bg" cx="555" cy="520" r="1050" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#b3120c"/>
+      <stop offset="0.28" stop-color="#6e0606"/>
+      <stop offset="0.6" stop-color="#2a0202"/>
+      <stop offset="1" stop-color="#0a0000"/>
+    </radialGradient>
+    <radialGradient id="glow" cx="555" cy="480" r="430" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffb000" stop-opacity="0.75"/>
+      <stop offset="0.5" stop-color="#ff4800" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#ff0000" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fffbe6"/>
+      <stop offset="0.22" stop-color="#ffe680"/>
+      <stop offset="0.48" stop-color="#ffbe1a"/>
+      <stop offset="0.52" stop-color="#d98200"/>
+      <stop offset="0.75" stop-color="#ffcf3a"/>
+      <stop offset="1" stop-color="#fff3b8"/>
+    </linearGradient>
+    <linearGradient id="goldH" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8a5300"/>
+      <stop offset="0.2" stop-color="#ffe9a0"/>
+      <stop offset="0.4" stop-color="#d99a1c"/>
+      <stop offset="0.6" stop-color="#fff4c4"/>
+      <stop offset="0.8" stop-color="#c47f0a"/>
+      <stop offset="1" stop-color="#ffe08a"/>
+    </linearGradient>
+    <linearGradient id="flameG" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#ffe14d"/>
+      <stop offset="0.45" stop-color="#ff8a00"/>
+      <stop offset="1" stop-color="#e01400"/>
+    </linearGradient>
+    <linearGradient id="ribbon" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ff3a2a"/>
+      <stop offset="0.5" stop-color="#d30d0d"/>
+      <stop offset="1" stop-color="#8f0000"/>
+    </linearGradient>
+    <linearGradient id="chili" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ff5a3c"/>
+      <stop offset="0.45" stop-color="#e01010"/>
+      <stop offset="1" stop-color="#7a0000"/>
+    </linearGradient>
+    <linearGradient id="badge" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff27a"/>
+      <stop offset="1" stop-color="#ffb800"/>
+    </linearGradient>
+    <linearGradient id="fadeBottom" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#000" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000" stop-opacity="0.85"/>
+    </linearGradient>
+    <radialGradient id="faceMaskG" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0.86" stop-color="#fff"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="vignette" cx="0.5" cy="0.45" r="0.55">
+      <stop offset="0.6" stop-color="#000" stop-opacity="0"/>
+      <stop offset="1" stop-color="#2a0000" stop-opacity="0.65"/>
+    </radialGradient>
+
+    <pattern id="dots" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(30)">
+      <circle cx="8" cy="8" r="3" fill="#ff5a1a" fill-opacity="0.35"/>
+    </pattern>
+
+    <clipPath id="faceClip"><circle cx="555" cy="455" r="222"/></clipPath>
+    <clipPath id="trimClip"><rect x="30" y="30" width="1050" height="1480" rx="45"/></clipPath>
+
+    <filter id="flicker" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.012 0.03" numOctaves="2" seed="7" result="t"/>
+      <feDisplacementMap in="SourceGraphic" in2="t" scale="38" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="10" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="sparkGlow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="6" result="b"/>
+      <feColorMatrix in="b" type="matrix" values="1 0 0 0 0  0 0.9 0 0 0  0 0 0.5 0 0  0 0 0 1.6 0" result="g"/>
+      <feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="bevel" x="-5%" y="-10%" width="110%" height="125%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="3.5" result="blur"/>
+      <feSpecularLighting in="blur" surfaceScale="5" specularConstant="1.1" specularExponent="22" lighting-color="#fff6d0" result="spec">
+        <fePointLight x="300" y="-600" z="500"/>
+      </feSpecularLighting>
+      <feComposite in="spec" in2="SourceAlpha" operator="in" result="specIn"/>
+      <feComposite in="SourceGraphic" in2="specIn" operator="arithmetic" k1="0" k2="1" k3="0.85" k4="0"/>
+    </filter>
+    <filter id="glitter" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.22" numOctaves="1" seed="3" result="n"/>
+      <feColorMatrix in="n" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 0.92  16 0 0 0 -11.2" result="dots"/>
+      <feComposite in="dots" in2="SourceAlpha" operator="in" result="d"/>
+      <feGaussianBlur in="SourceAlpha" stdDeviation="3" result="blur"/>
+      <feSpecularLighting in="blur" surfaceScale="4" specularConstant="1" specularExponent="18" lighting-color="#fff8dc" result="spec">
+        <fePointLight x="555" y="900" z="420"/>
+      </feSpecularLighting>
+      <feComposite in="spec" in2="SourceAlpha" operator="in" result="s"/>
+      <feComposite in="SourceGraphic" in2="s" operator="arithmetic" k2="1" k3="0.45" result="lit"/>
+      <feMerge><feMergeNode in="lit"/><feMergeNode in="d"/></feMerge>
+    </filter>
+    <filter id="drop" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="10" stdDeviation="9" flood-color="#000" flood-opacity="0.7"/>
+    </filter>
+
+    <path id="spark" d="M0,-100 C10,-14 14,-10 100,0 C14,10 10,14 0,100 C-10,14 -14,10 -100,0 C-14,-10 -10,-14 0,-100Z"/>
+    <g id="chiliIcon">
+      <path d="M-6,-40 C4,-46 16,-44 18,-36 C10,-36 6,-32 4,-26 Z" fill="#2f9e2f"/>
+      <path d="M-14,-30 C6,-34 18,-22 16,-2 C14,22 2,40 -22,50 C-12,32 -16,10 -22,-6 C-26,-18 -24,-28 -14,-30Z" fill="url(#chili)"/>
+      <path d="M-12,-22 C-4,-24 2,-18 0,-10 C-6,-14 -10,-16 -16,-14Z" fill="#fff" fill-opacity="0.55"/>
+    </g>
+  </defs>
+
+  <!-- BACKGROUND -->
+  <rect width="1110" height="1540" fill="url(#bg)"/>
+  <g id="rays" opacity="0.5"></g>
+  <rect y="1000" width="1110" height="540" fill="url(#dots)" opacity="0.6"/>
+  <rect width="1110" height="1540" fill="url(#vignette)"/>
+
+  <!-- PORTRAIT + FLAMES -->
+  <circle cx="555" cy="455" r="420" fill="url(#glow)"/>
+  <g id="flames" filter="url(#flicker)"></g>
+  <g id="embers"></g>
+  <g id="chilis"></g>
+
+  <circle cx="555" cy="455" r="236" fill="#1a0000"/>
+  <g clip-path="url(#faceClip)">
+    <image href="face.png" x="327" y="227" width="456" height="456" preserveAspectRatio="xMidYMid slice"/>
+    <circle cx="555" cy="455" r="222" fill="none" stroke="#ff6a00" stroke-opacity="0.35" stroke-width="40" filter="url(#softGlow)"/>
+    <rect x="320" y="560" width="470" height="130" fill="url(#fadeBottom)"/>
+  </g>
+  <!-- gold ring -->
+  <circle cx="555" cy="455" r="230" fill="none" stroke="#3a1600" stroke-width="26"/>
+  <circle cx="555" cy="455" r="230" fill="none" stroke="url(#goldH)" stroke-width="18"/>
+  <circle cx="555" cy="455" r="244" fill="none" stroke="url(#goldH)" stroke-width="3"/>
+  <circle cx="555" cy="455" r="216" fill="none" stroke="#fff3c0" stroke-opacity="0.6" stroke-width="2"/>
+  <g id="ringDots"></g>
+
+  <!-- CROWN -->
+  <g transform="translate(555 205)" filter="url(#drop)">
+    <path d="M-92,30 L-108,-58 L-56,-14 L0,-84 L56,-14 L108,-58 L92,30 Z" fill="url(#goldH)" stroke="#5a2a00" stroke-width="5" stroke-linejoin="round"/>
+    <rect x="-96" y="22" width="192" height="26" rx="6" fill="url(#gold)" stroke="#5a2a00" stroke-width="5"/>
+    <circle cx="0" cy="-88" r="12" fill="#ff2a1a" stroke="#5a2a00" stroke-width="4"/>
+    <circle cx="-110" cy="-62" r="10" fill="#ff2a1a" stroke="#5a2a00" stroke-width="4"/>
+    <circle cx="110" cy="-62" r="10" fill="#ff2a1a" stroke="#5a2a00" stroke-width="4"/>
+    <circle cx="0" cy="35" r="9" fill="#d40000"/>
+    <circle cx="-50" cy="35" r="7" fill="#d40000"/>
+    <circle cx="50" cy="35" r="7" fill="#d40000"/>
+  </g>
+
+  <!-- BADGES -->
+  <g id="badgeL" transform="translate(190 300) rotate(-14)" filter="url(#drop)"></g>
+  <g id="badgeR" transform="translate(918 320) rotate(12)" filter="url(#drop)"></g>
+
+  <!-- BRAND NAME -->
+  <g id="brand"></g>
+
+  <!-- RIBBON -->
+  <g id="ribbonG" filter="url(#drop)">
+    <path d="M150,1028 L235,1028 L235,1120 L150,1120 L182,1074 Z" fill="#7a0000"/>
+    <path d="M960,1028 L875,1028 L875,1120 L960,1120 L928,1074 Z" fill="#7a0000"/>
+    <path d="M235,1120 L262,1134 L262,1106 Z" fill="#3a0000"/>
+    <path d="M875,1120 L848,1134 L848,1106 Z" fill="#3a0000"/>
+    <path d="M215,996 Q555,976 895,996 L895,1112 Q555,1092 215,1112 Z" fill="url(#ribbon)" stroke="url(#goldH)" stroke-width="5"/>
+    <text id="subtitle" x="555" y="1074" text-anchor="middle" font-family="Kanit" font-weight="800" font-size="72" fill="#fff">น้ำพริกหมูกระจก</text>
+  </g>
+
+  <!-- วับวาว -->
+  <g id="sparkle"></g>
+
+  <!-- BOTTOM INFO -->
+  <g id="info"></g>
+
+  <!-- inner gold frame (inside trim, 4.5mm in) -->
+  <rect x="64" y="64" width="982" height="1412" rx="30" fill="none" stroke="url(#goldH)" stroke-width="5"/>
+  <rect x="76" y="76" width="958" height="1388" rx="22" fill="none" stroke="#ffd34d" stroke-opacity="0.45" stroke-width="2"/>
+  <g id="corners"></g>
+
+  <!-- guides (hidden in final) -->
+  <g id="guides" style="display:none">
+    <rect x="30" y="30" width="1050" height="1480" rx="45" fill="none" stroke="#0ff" stroke-width="2"/>
+    <rect x="60" y="60" width="990" height="1420" fill="none" stroke="#f0f" stroke-width="2" stroke-dasharray="8 8"/>
+  </g>
+</svg>
+
+<script>
+const NS = 'http://www.w3.org/2000/svg';
+const $ = id => document.getElementById(id);
+function el(tag, attrs = {}, parent) {
+  const e = document.createElementNS(NS, tag);
+  for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, v);
+  if (parent) parent.appendChild(e);
+  return e;
+}
+// deterministic random
+let seed = 20261118;
+const rnd = () => (seed = (seed * 1664525 + 1013904223) % 4294967296) / 4294967296;
+
+// sunburst rays
+(() => {
+  const g = $('rays'), cx = 555, cy = 455, R = 1400, n = 36;
+  for (let i = 0; i < n; i += 2) {
+    const a1 = (i / n) * Math.PI * 2, a2 = ((i + 1) / n) * Math.PI * 2;
+    el('path', { d: `M${cx},${cy} L${cx + R * Math.cos(a1)},${cy + R * Math.sin(a1)} L${cx + R * Math.cos(a2)},${cy + R * Math.sin(a2)} Z`, fill: '#ff3b10', 'fill-opacity': 0.18 }, g);
+  }
+})();
+
+// floating embers
+(() => {
+  const g = $('embers');
+  for (let i = 0; i < 46; i++) {
+    const x = 90 + rnd() * 930, y = 90 + rnd() * 760;
+    const dc = Math.hypot(x - 555, y - 455);
+    if (dc < 260) continue;
+    const r = 2 + rnd() * 5;
+    el('circle', { cx: x, cy: y, r, fill: rnd() > 0.5 ? '#ffd23a' : '#ff7a1a', 'fill-opacity': 0.6 + rnd() * 0.4, filter: 'url(#sparkGlow)' }, g);
+  }
+})();
+
+// flame ring: tongues that lean upward like real fire
+(() => {
+  const g = $('flames'), cx = 555, cy = 455, r0 = 215;
+  const layers = [
+    { n: 34, len: [120, 210], w: 0.30, fill: '#c90f00', op: 1 },
+    { n: 30, len: [85, 160], w: 0.26, fill: 'url(#flameG)', op: 1 },
+    { n: 26, len: [45, 95], w: 0.22, fill: '#ffd23a', op: 0.95 },
+  ];
+  for (const L of layers) {
+    for (let i = 0; i < L.n; i++) {
+      const a = (i / L.n) * Math.PI * 2 + rnd() * 0.15;
+      const up = Math.max(0, -Math.sin(a));      // 1 at top
+      const down = Math.max(0, Math.sin(a));
+      let len = L.len[0] + rnd() * (L.len[1] - L.len[0]);
+      len *= 0.75 + up * 0.75 - down * 0.25;
+      const bx = cx + r0 * Math.cos(a), by = cy + r0 * Math.sin(a);
+      // direction: blend of radial and straight up
+      let dx = Math.cos(a), dy = Math.sin(a);
+      dx = dx * 0.6; dy = dy * 0.6 - 0.55;
+      const m = Math.hypot(dx, dy); dx /= m; dy /= m;
+      const tx = bx + dx * len, ty = by + dy * len;
+      const hw = L.w * r0 * (2 * Math.PI / L.n) * 1.9;
+      const px = -Math.sin(a), py = Math.cos(a);
+      const curl = (rnd() - 0.5) * len * 0.6;
+      const lx = bx + px * hw, ly = by + py * hw, rx = bx - px * hw, ry = by - py * hw;
+      const mx = (bx + tx) / 2 + (-dy) * curl, my = (by + ty) / 2 + dx * curl;
+      el('path', {
+        d: `M${lx},${ly} Q${mx + px * hw * 0.8},${my + py * hw * 0.8} ${tx},${ty} Q${mx - px * hw * 0.8},${my - py * hw * 0.8} ${rx},${ry} Z`,
+        fill: L.fill, 'fill-opacity': L.op
+      }, g);
+    }
+  }
+})();
+
+// chili peppers behind the portrait
+(() => {
+  const g = $('chilis');
+  const chili = (x, y, rot, s, flip) => {
+    const t = el('g', { transform: `translate(${x} ${y}) rotate(${rot}) scale(${flip ? -s : s} ${s})`, filter: 'url(#drop)' }, g);
+    el('path', { d: 'M2,-146 C0,-176 12,-200 38,-210', fill: 'none', stroke: '#2f7d1f', 'stroke-width': 13, 'stroke-linecap': 'round' }, t);
+    el('path', { d: 'M-30,-140 C-34,-40 -18,70 34,165 C26,60 36,-40 30,-140 Q0,-156 -30,-140Z', fill: 'url(#chili)', stroke: '#4a0000', 'stroke-width': 3 }, t);
+    el('path', { d: 'M-19,-126 C-23,-60 -14,20 6,92 C-6,24 -11,-60 -9,-126Z', fill: '#fff', 'fill-opacity': 0.5 }, t);
+    el('path', { d: 'M-38,-136 Q-22,-160 0,-150 Q22,-160 38,-136 Q26,-124 14,-132 Q0,-120 -14,-132 Q-26,-124 -38,-136Z', fill: '#3fa52a', stroke: '#1f5a12', 'stroke-width': 3 }, t);
+  };
+  chili(290, 590, -40, 1.0, false);
+  chili(350, 650, -16, 0.85, false);
+  chili(820, 590, 40, 1.0, true);
+  chili(760, 650, 16, 0.85, true);
+})();
+
+// sparkles on the gold ring
+(() => {
+  const g = $('ringDots');
+  [[-150, 34], [-30, 22], [200, 26], [40, 16], [120, 18]].forEach(([deg, s]) => {
+    const a = deg * Math.PI / 180;
+    el('use', { href: '#spark', transform: `translate(${555 + 232 * Math.cos(a)} ${455 + 232 * Math.sin(a)}) scale(${s / 100})`, fill: '#fffbe6', filter: 'url(#sparkGlow)' }, g);
+  });
+})();
+
+// starburst badges
+function badge(id, lines, sizes) {
+  const g = $(id), n = 18, R = 112, r = 92;
+  let d = '';
+  for (let i = 0; i < n * 2; i++) {
+    const a = (i / (n * 2)) * Math.PI * 2 - Math.PI / 2, rr = i % 2 ? r : R;
+    d += (i ? 'L' : 'M') + (rr * Math.cos(a)).toFixed(1) + ',' + (rr * Math.sin(a)).toFixed(1);
+  }
+  el('path', { d: d + 'Z', fill: '#1a0000', transform: 'translate(0 8)' }, g);
+  el('path', { d: d + 'Z', fill: 'url(#badge)', stroke: '#1a0000', 'stroke-width': 7, 'stroke-linejoin': 'round' }, g);
+  el('circle', { r: 78, fill: 'none', stroke: '#d40000', 'stroke-width': 3, 'stroke-dasharray': '6 7' }, g);
+  lines.forEach((t, i) => {
+    const y = lines.length === 1 ? 18 : (i === 0 ? -6 : 50);
+    const tx = el('text', { x: 0, y, 'text-anchor': 'middle', 'font-family': 'Kanit', 'font-weight': 900, 'font-size': sizes[i], fill: '#d40000', stroke: '#fff', 'stroke-width': 0 }, g);
+    tx.textContent = t;
+  });
+}
+// fit helper
+function fitText(t, maxW) {
+  const bb = t.getBBox();
+  if (bb.width > maxW) {
+    const s = maxW / bb.width;
+    t.setAttribute('font-size', parseFloat(t.getAttribute('font-size')) * s);
+  }
+}
+
+async function main() {
+await Promise.all(['900 italic 100px Kanit','800 100px Kanit','700 100px Kanit','900 100px Kanit'].map(f=>document.fonts.load(f,'มะเดี่ยวน้ำพริกABC')));
+badge('badgeL', ['กรอบ', 'แน่!'], [62, 62]);
+badge('badgeR', ['อร่อย', 'ชัวร์!'], [56, 56]);
+// BRAND NAME มะเดี่ยว — layered 3D gold
+(() => {
+  const g = $('brand');
+  const base = { x: 555, y: 905, 'text-anchor': 'middle', 'font-family': 'Kanit', 'font-style': 'italic', 'font-weight': 900, 'font-size': 270 };
+  const probe = el('text', base, g); probe.textContent = 'มะเดี่ยว';
+  fitText(probe, 900);
+  const fs = probe.getAttribute('font-size'); probe.remove();
+  const mk = (attrs) => { const t = el('text', { ...base, 'font-size': fs, ...attrs }, g); t.textContent = 'มะเดี่ยว'; return t; };
+  // extrusion
+  for (let i = 16; i >= 1; i--) mk({ transform: `translate(${i * 0.9} ${i * 1.1})`, fill: i > 12 ? '#000' : '#5c0000', stroke: i > 12 ? '#000' : '#5c0000', 'stroke-width': 26, 'stroke-linejoin': 'round' });
+  mk({ fill: '#000', stroke: '#000', 'stroke-width': 30, 'stroke-linejoin': 'round' });
+  mk({ fill: '#e3140f', stroke: '#e3140f', 'stroke-width': 18, 'stroke-linejoin': 'round' });
+  mk({ fill: '#fff4c2', stroke: '#fff4c2', 'stroke-width': 4, 'stroke-linejoin': 'round' });
+  mk({ fill: 'url(#gold)', filter: 'url(#bevel)' });
+  // sparkles
+  [[205, 735, 46], [915, 700, 56], [880, 905, 28], [262, 900, 22], [700, 650, 30]].forEach(([x, y, s]) =>
+    el('use', { href: '#spark', transform: `translate(${x} ${y}) scale(${s / 100})`, fill: '#fff', filter: 'url(#sparkGlow)' }, g));
+})();
+
+fitText($('subtitle'), 600);
+
+// วับวาว — glitter gold
+(() => {
+  const g = $('sparkle');
+  const base = { x: 555, y: 1275, 'text-anchor': 'middle', 'font-family': 'Kanit', 'font-style': 'italic', 'font-weight': 900, 'font-size': 175, 'letter-spacing': 4 };
+  const mk = (attrs) => { const t = el('text', { ...base, ...attrs }, g); t.textContent = 'วับวาว'; return t; };
+  mk({ transform: 'translate(6 9)', fill: '#000', stroke: '#000', 'stroke-width': 22, 'stroke-linejoin': 'round' });
+  mk({ fill: '#3a1200', stroke: '#3a1200', 'stroke-width': 20, 'stroke-linejoin': 'round' });
+  mk({ fill: '#ffde5a', stroke: 'url(#goldH)', 'stroke-width': 10, 'stroke-linejoin': 'round' });
+  mk({ fill: 'url(#gold)', filter: 'url(#glitter)' });
+  [[300, 1150, 60], [835, 1165, 44], [880, 1250, 26], [245, 1240, 24], [555, 1135, 20]].forEach(([x, y, s]) =>
+    el('use', { href: '#spark', transform: `translate(${x} ${y}) scale(${s / 100})`, fill: '#fff', filter: 'url(#sparkGlow)' }, g));
+})();
+
+// bottom info strip
+(() => {
+  const g = $('info');
+  const y0 = 1330;
+  // left pill: spice meter
+  el('rect', { x: 110, y: y0, width: 430, height: 96, rx: 48, fill: '#140000', 'fill-opacity': 0.85, stroke: 'url(#goldH)', 'stroke-width': 4 }, g);
+  const t1 = el('text', { x: 150, y: y0 + 62, 'font-family': 'Kanit', 'font-weight': 700, 'font-size': 34, fill: '#ffd34d' }, g);
+  t1.textContent = 'ความแซ่บ';
+  for (let i = 0; i < 5; i++)
+    el('use', { href: '#chiliIcon', transform: `translate(${318 + i * 46} ${y0 + 48}) rotate(18) scale(0.72)` }, g);
+  // right pill: net weight with blank to write
+  el('rect', { x: 570, y: y0, width: 430, height: 96, rx: 48, fill: '#140000', 'fill-opacity': 0.85, stroke: 'url(#goldH)', 'stroke-width': 4 }, g);
+  const t2 = el('text', { x: 610, y: y0 + 62, 'font-family': 'Kanit', 'font-weight': 700, 'font-size': 32, fill: '#ffd34d' }, g);
+  t2.textContent = 'น้ำหนักสุทธิ';
+  el('line', { x1: 790, y1: y0 + 66, x2: 900, y2: y0 + 66, stroke: '#fff', 'stroke-opacity': 0.7, 'stroke-width': 3 }, g);
+  const t3 = el('text', { x: 912, y: y0 + 62, 'font-family': 'Kanit', 'font-weight': 700, 'font-size': 32, fill: '#ffd34d' }, g);
+  t3.textContent = 'กรัม';
+})();
+
+// frame corner sparkles
+(() => {
+  const g = $('corners');
+  [[64, 64], [1046, 64], [64, 1476], [1046, 1476]].forEach(([x, y]) =>
+    el('use', { href: '#spark', transform: `translate(${x} ${y}) scale(0.22)`, fill: '#ffe680' }, g));
+})();
+
+if (location.hash.includes('guides')) $('guides').style.display = '';
+if (location.hash.includes('trim')) {
+  document.body.classList.add('trim');
+  $('lbl').setAttribute('viewBox', '30 30 1050 1480');
+}
+document.title = 'ready';
+}
+main();
+</script>
+</body>
+</html>
