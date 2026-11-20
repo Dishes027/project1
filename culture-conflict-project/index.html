@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<title>มวยไทย หรือ กุน ขแมร์</title>
+<link rel="stylesheet" href="fonts.local.css">
+<style>
+  :root{
+    --bg:#FBF6EE; --card:#FFFFFF; --ink:#1B2440; --muted:#596178; --line:#E7DDCC;
+    --navy:#1E2A56; --navy2:#2D3C78; --red:#D6463A; --red-soft:#FBE7E4;
+    --gold:#E9A23B; --gold-soft:#FDF1DC; --teal:#11877E; --teal-soft:#DDF2EF;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{width:1240px;background:var(--bg);color:var(--ink);font-family:"Sarabun",sans-serif;font-size:18.5px;line-height:1.55}
+  h1,h2,h3,.p{font-family:"Prompt",sans-serif}
+  .wrap{padding:0 52px}
+
+  /* ---------- HERO ---------- */
+  .hero{background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 100%);color:#fff;padding:44px 52px 40px;position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;right:-120px;top:-120px;width:420px;height:420px;border-radius:50%;
+    background:radial-gradient(circle,rgba(233,162,59,.35),rgba(233,162,59,0) 70%)}
+  .hero::before{content:"";position:absolute;left:-80px;bottom:-160px;width:380px;height:380px;border-radius:50%;
+    background:radial-gradient(circle,rgba(214,70,58,.30),rgba(214,70,58,0) 70%)}
+  .chips{display:flex;gap:10px;flex-wrap:wrap;position:relative;z-index:1}
+  .chip{font-family:"Prompt";font-weight:500;font-size:15px;padding:6px 14px;border-radius:999px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25)}
+  .chip.gold{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+  .hero h1{font-weight:700;font-size:38px;line-height:1.35;margin:18px 0 22px;position:relative;z-index:1;max-width:1000px}
+  .hero-row{display:grid;grid-template-columns:1fr 380px;gap:24px;align-items:stretch;position:relative;z-index:1}
+  .case{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:20px 24px}
+  .case .lbl{font-family:"Prompt";font-size:15px;letter-spacing:.5px;color:var(--gold);font-weight:600}
+  .case .t{font-family:"Prompt";font-weight:700;font-size:31px;line-height:1.3;margin:4px 0 6px}
+  .case .t em{font-style:normal;color:var(--gold)}
+  .case .s{font-size:17.5px;opacity:.92}
+  .student{background:#fff;color:var(--ink);border-radius:20px;padding:18px 22px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+  .student .lbl{font-family:"Prompt";font-size:14px;color:var(--muted);font-weight:500}
+  .student .name{font-family:"Prompt";font-weight:700;font-size:25px;color:var(--navy);line-height:1.3;margin-bottom:8px}
+  .student .id{font-family:"Prompt";font-weight:600;font-size:23px;letter-spacing:1px;color:var(--red)}
+  .student .grp{font-size:16px;color:var(--muted);margin-top:4px}
+  .student hr{border:none;border-top:1px dashed var(--line);margin:10px 0}
+
+  /* ---------- SECTIONS ---------- */
+  section{padding:36px 0 6px}
+  .sec-head{display:flex;align-items:center;gap:16px;margin-bottom:20px}
+  .num{flex:none;width:58px;height:58px;border-radius:16px;display:grid;place-items:center;font-family:"Prompt";font-weight:800;font-size:30px;color:#fff}
+  .n1{background:var(--navy)} .n2{background:var(--red)} .n3{background:var(--teal)}
+  .sec-head h2{font-size:29px;font-weight:700;line-height:1.25}
+  .sec-head .sub{font-size:16.5px;color:var(--muted);font-family:"Sarabun"}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px 22px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+
+  /* news clippings */
+  .news-wrap{display:flex;flex-direction:column;gap:14px}
+  .clip{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 4px 14px rgba(27,36,64,.06)}
+  .clip .bar{display:flex;align-items:center;gap:8px;padding:8px 14px;background:#F1ECE3;border-bottom:1px solid var(--line);font-size:13.5px;color:var(--muted)}
+  .dots{display:flex;gap:5px}.dots i{width:10px;height:10px;border-radius:50%;background:#D9CFBF;display:block}
+  .url{flex:1;background:#fff;border-radius:8px;padding:2px 10px;font-family:monospace;font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .clip .body{padding:14px 18px 16px}
+  .src{display:inline-block;font-family:"Prompt";font-size:13px;font-weight:600;color:#fff;background:var(--navy);padding:2px 10px;border-radius:6px;margin-bottom:6px}
+  .src.alt{background:#4B5563}
+  .clip h3{font-size:21px;line-height:1.38;font-weight:600}
+  .clip .meta{font-size:14.5px;color:var(--muted);margin-top:4px}
+  .social{flex:1;background:var(--red-soft);border:1px solid #F3C9C3;border-radius:16px;padding:16px 18px}
+  .social .h{font-family:"Prompt";font-weight:600;font-size:18px;color:var(--red);margin-bottom:8px}
+  .bubbles{display:flex;flex-wrap:wrap;gap:8px}
+  .bubble{background:#fff;border:1px solid #F0C4BE;border-radius:14px 14px 14px 4px;padding:7px 12px;font-size:15.5px;line-height:1.4}
+  .bubble b{color:var(--red)}
+
+  /* timeline */
+  .tl{position:relative;padding-left:26px}
+  .tl::before{content:"";position:absolute;left:8px;top:8px;bottom:8px;width:3px;background:var(--line);border-radius:3px}
+  .ev{position:relative;margin-bottom:14px}
+  .ev::before{content:"";position:absolute;left:-25px;top:7px;width:15px;height:15px;border-radius:50%;background:#fff;border:3px solid var(--navy)}
+  .ev.r::before{border-color:var(--red)} .ev.g::before{border-color:var(--gold)}
+  .ev .d{font-family:"Prompt";font-weight:600;font-size:15px;color:var(--navy)}
+  .ev .x{font-size:17px;line-height:1.5}
+  .how{margin-top:6px;background:var(--gold-soft);border:1px solid #F2D7A6;border-radius:16px;padding:16px 18px}
+  .how .h{font-family:"Prompt";font-weight:700;font-size:19px;margin-bottom:8px}
+  .row{display:grid;grid-template-columns:118px 1fr auto;gap:10px;align-items:center;padding:7px 0;border-top:1px dashed #EBCF9C;font-size:16.5px;line-height:1.4}
+  .row:first-of-type{border-top:none}
+  .who{font-family:"Prompt";font-weight:600;font-size:15.5px}
+  .tag{font-family:"Prompt";font-size:13px;font-weight:600;padding:3px 10px;border-radius:999px;white-space:nowrap}
+  .t-av{background:#E5E7EB;color:#374151}
+  .t-co{background:var(--red);color:#fff}
+  .t-th{background:var(--navy);color:#fff}
+  .result{margin-top:10px;font-size:16.5px;background:#fff;border-radius:12px;padding:10px 14px;border-left:5px solid var(--red)}
+
+  /* critique */
+  .verdict{display:flex;align-items:center;gap:16px;background:var(--navy);color:#fff;border-radius:18px;padding:16px 22px;margin-bottom:20px}
+  .verdict .big{font-family:"Prompt";font-weight:700;font-size:25px;color:var(--gold);white-space:nowrap}
+  .verdict .why{font-size:17.5px;border-left:1px solid rgba(255,255,255,.3);padding-left:16px;line-height:1.5}
+  .crit{display:grid;grid-template-columns:470px 1fr;gap:22px}
+  .tki .h{font-family:"Prompt";font-weight:600;font-size:18px;margin-bottom:2px}
+  .tki .s{font-size:14.5px;color:var(--muted);margin-bottom:6px}
+  .pc{display:flex;flex-direction:column;gap:14px}
+  .list .h{font-family:"Prompt";font-weight:700;font-size:20px;margin-bottom:8px;display:flex;align-items:center;gap:10px}
+  .ico{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:18px;font-weight:800;font-family:"Prompt"}
+  .ok .ico{background:var(--teal)} .no .ico{background:var(--red)}
+  .ok{border-top:5px solid var(--teal)} .no{border-top:5px solid var(--red)}
+  .list ul{list-style:none}
+  .list li{position:relative;padding-left:20px;margin:6px 0;font-size:16.8px;line-height:1.5}
+  .list li::before{content:"";position:absolute;left:3px;top:11px;width:8px;height:8px;border-radius:50%}
+  .ok li::before{background:var(--teal)} .no li::before{background:var(--red)}
+  .list li b{font-weight:700}
+  .nw{white-space:nowrap}
+  .legend{margin-top:10px;display:grid;gap:8px}
+  .lg{display:flex;gap:10px;align-items:flex-start;font-size:15.5px;line-height:1.45;border-radius:12px;padding:9px 12px}
+  .lg.bad{background:var(--red-soft)} .lg.good{background:var(--teal-soft)}
+  .lg .dot{flex:none;width:12px;height:12px;border-radius:50%;margin-top:6px}
+  .lg.bad .dot{background:var(--red)} .lg.good .dot{background:var(--teal)}
+
+  /* solutions */
+  .shift{display:flex;align-items:center;justify-content:center;gap:18px;margin-bottom:20px}
+  .shift .q{font-family:"Prompt";font-weight:600;font-size:21px;padding:12px 22px;border-radius:14px}
+  .q.old{background:#fff;border:2px dashed #C9BFAE;color:var(--muted);text-decoration:line-through;text-decoration-color:var(--red);text-decoration-thickness:3px}
+  .q.new{background:var(--teal);color:#fff;box-shadow:0 8px 20px rgba(17,135,126,.25)}
+  .arrow{font-size:32px;color:var(--teal);font-weight:800}
+  .sol{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .s-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px 18px 16px;position:relative}
+  .s-card .top{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+  .s-card .em{font-size:28px;line-height:1}
+  .s-card .k{font-family:"Prompt";font-weight:800;font-size:15px;color:var(--teal);background:var(--teal-soft);border-radius:8px;padding:1px 9px}
+  .s-card h3{font-size:19.5px;font-weight:700;line-height:1.35;margin-bottom:6px}
+  .concept{display:inline-block;font-size:13.5px;font-family:"Prompt";font-weight:500;color:var(--navy);background:#EEF0F8;border-radius:8px;padding:2px 9px;margin-bottom:8px;line-height:1.45}
+  .s-card p{font-size:16px;line-height:1.52}
+  .s-card.me{background:var(--navy);color:#fff;border-color:var(--navy)}
+  .s-card.me .concept{background:rgba(255,255,255,.15);color:#fff}
+  .s-card.me .k{background:var(--gold);color:var(--navy)}
+
+  /* conclusion & footer */
+  .concl{margin:28px 0 0;background:linear-gradient(135deg,var(--teal) 0%,#0B6A63 100%);color:#fff;border-radius:22px;padding:24px 30px;display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:center}
+  .concl .ql{font-family:"Prompt";font-size:84px;line-height:.6;color:rgba(255,255,255,.35);font-weight:800}
+  .concl .h{font-family:"Prompt";font-weight:700;font-size:23px;line-height:1.4}
+  .concl p{font-size:17.5px;opacity:.95;margin-top:6px}
+  footer{margin-top:22px;padding:18px 52px 26px;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr auto;gap:24px;font-size:13.8px;color:var(--muted);line-height:1.55}
+  footer b{font-family:"Prompt";color:var(--ink);font-weight:600}
+  .sign{text-align:right;font-family:"Prompt";font-size:15px;color:var(--ink)}
+  .sign .id{color:var(--red);font-weight:600}
+</style>
+</head>
+<body>
+
+<!-- ================= HERO ================= -->
+<header class="hero">
+  <div class="chips">
+    <span class="chip gold">งานเดี่ยว · 10 คะแนน</span>
+    <span class="chip">บทเรียนที่ 10 (ต่อ) แนวทางการจัดการความขัดแย้งระหว่างวัฒนธรรม</span>
+  </div>
+  <h1>การวิพากษ์ประเด็นความขัดแย้งเกี่ยวกับวัฒนธรรมจากข่าว และการเสนอแนวทางการแก้ไข</h1>
+  <div class="hero-row">
+    <div class="case">
+      <div class="lbl">กรณีศึกษา</div>
+      <div class="t">🥊 “<em>มวยไทย</em>” หรือ “<em>กุน ขแมร์</em>”?</div>
+      <div class="s">ดราม่าชื่อกีฬามวยในซีเกมส์ครั้งที่ 32 ที่กัมพูชาเป็นเจ้าภาพ (พ.ศ. 2566) ข้อพิพาทเรื่อง “ความเป็นเจ้าของ” ศิลปะการต่อสู้ที่ลุกลามจากสนามกีฬาไปสู่สงครามคอมเมนต์ระหว่างคนไทยกับคนกัมพูชา</div>
+    </div>
+    <div class="student">
+      <div class="lbl">ชื่อ - นามสกุล</div>
+      <div class="name">ศุภณัฐ สุวัฒน์วิโรจน์</div>
+      <hr>
+      <div class="lbl">รหัสนักศึกษา</div>
+      <div class="id">2610111102112</div>
+      <div class="grp">กลุ่มเรียนวันศุกร์</div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<!-- ================= 1 ================= -->
+<section>
+  <div class="sec-head">
+    <div class="num n1">1</div>
+    <div>
+      <h2>ข่าวข้อพิพาททางวัฒนธรรม และการแก้ไขที่ปรากฏบนสื่อออนไลน์</h2>
+      <div class="sub">ภาพข่าวที่ค้นพบ ลำดับเหตุการณ์ และวิธีที่แต่ละฝ่ายใช้รับมือกับข้อพิพาท</div>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <!-- left: news -->
+    <div class="news-wrap">
+      <div class="clip">
+        <div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">thaipbs.or.th/news/content/323764</span></div>
+        <div class="body">
+          <span class="src">Thai PBS News</span>
+          <h3>ไทยเมินส่งนักกีฬาแข่ง “กุน ขแมร์” ซีเกมส์ 2023</h3>
+          <div class="meta">ข่าวออนไลน์ · ม.ค. 2566</div>
+        </div>
+      </div>
+      <div class="clip">
+        <div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">thaipbs.or.th/news/content/323857</span></div>
+        <div class="body">
+          <span class="src">Thai PBS News</span>
+          <h3>ดราม่า “กุน ขแมร์” ไทยโต้กัมพูชาไม่ส่งนักกีฬาลงซีเกมส์ 2023</h3>
+          <div class="meta">ข่าวออนไลน์ · ม.ค. 2566</div>
+        </div>
+      </div>
+      <div class="clip">
+        <div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">nationthailand.com/thailand/general/40024514</span></div>
+        <div class="body">
+          <span class="src alt">The Nation Thailand</span>
+          <h3>Thailand to boycott SEA Games Muay Thai after Cambodia changes name</h3>
+          <div class="meta">ข่าวภาษาอังกฤษ · ม.ค. 2566</div>
+        </div>
+      </div>
+      <div class="social">
+        <div class="h">💬 กระแสบนโซเชียลมีเดีย</div>
+        <div class="bubbles">
+          <span class="bubble">ชาวเน็ตไทยตั้งฉายากัมพูชาว่า <b>“เคลมโบเดีย”</b></span>
+          <span class="bubble">ฝั่งกัมพูชา: <b>“กุน ขแมร์คือต้นแบบของมวยไทย”</b></span>
+          <span class="bubble">ข่าวลือ “บัวขาวมีเชื้อสายเขมร” → บัวขาวยืนยันว่าเป็น<b>คนไทยเชื้อสายกูย</b></span>
+          <span class="bubble"><b>สงครามคอมเมนต์</b> ไทย–กัมพูชา ลุกลามข้ามเพจข่าว</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- right: timeline + how -->
+    <div class="card">
+      <div class="tl">
+        <div class="ev">
+          <div class="d">ปี 2565</div>
+          <div class="x">เจ้าภาพกัมพูชา (CAMSOC) กำหนดเรียกกีฬามวยในซีเกมส์ครั้งที่ 32 ว่า <b>“กุน ขแมร์”</b> แทนคำว่า “มวย” โดยอ้างว่าเป็นวัฒนธรรมของกัมพูชา</div>
+        </div>
+        <div class="ev r">
+          <div class="d">ม.ค. 2566</div>
+          <div class="x">สหพันธ์มวยไทยสมัครเล่นนานาชาติ <b>(IFMA)</b> เตือนชาติสมาชิกว่าหากส่งนักกีฬาไปแข่ง อาจถูก<b>แบนจากรายการของ IFMA 2 ปี</b> และไทยประกาศ<b>ไม่ส่งนักกีฬา</b></div>
+        </div>
+        <div class="ev">
+          <div class="d">ม.ค. 2566</div>
+          <div class="x">คณะกรรมการโอลิมปิกแห่งประเทศไทย<b>ไม่คัดค้าน</b>การจัดแข่งขัน เพื่อไม่ให้กลายเป็นข้อพิพาทระหว่างประเทศ และส่งเรื่องผ่าน IOC / OCA</div>
+        </div>
+        <div class="ev g">
+          <div class="d">6–11 พ.ค. 2566</div>
+          <div class="x">แข่ง “กุน ขแมร์” ตามกำหนด มี 7 ชาติลงแข่ง (เช่น เวียดนาม มาเลเซีย ฟิลิปปินส์) ส่วน<b>ไทยและสิงคโปร์ไม่เข้าร่วม</b> เจ้าภาพคว้าเหรียญทอง<span class="nw">มากที่สุด</span></div>
+        </div>
+        <div class="ev r">
+          <div class="d">หลังการแข่งขัน</div>
+          <div class="x">ไม่มีข้อตกลงร่วมกันเรื่องชื่อหรือที่มาของมวย ประเด็น <span class="nw">“ใครเป็นต้นแบบ”</span> จึงยังถูกหยิบมา<b>ถกเถียงบนโซเชียล</b>ซ้ำแล้วซ้ำเล่า</div>
+        </div>
+      </div>
+
+      <div class="how">
+        <div class="h">🔎 ข้อพิพาทถูก “แก้” อย่างไร?</div>
+        <div class="row"><span class="who">ไทย</span><span>ไม่ส่งนักกีฬา ไม่โต้กลับระดับรัฐ</span><span class="tag t-av">หลีกเลี่ยง</span></div>
+        <div class="row"><span class="who">กัมพูชา</span><span>ยืนกรานใช้ชื่อ “กุน ขแมร์” และจัดต่อ</span><span class="tag t-co">เอาชนะ</span></div>
+        <div class="row"><span class="who">IFMA</span><span>ใช้มาตรการขู่แบนชาติที่ส่งนักกีฬา</span><span class="tag t-co">ใช้อำนาจ</span></div>
+        <div class="row"><span class="who">ชาวเน็ต</span><span>ตอบโต้ด้วยอารมณ์ ใช้คำเหยียด</span><span class="tag t-co">ยกระดับ</span></div>
+        <div class="result"><b>ผลลัพธ์:</b> การแข่งขันเดินหน้าได้ แต่คำถาม “ใครเป็นเจ้าของมวย” <b>ยังไม่ถูกแก้</b> และความรู้สึกเป็นปฏิปักษ์บนโลกออนไลน์ยังคงอยู่</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 2 ================= -->
+<section>
+  <div class="sec-head">
+    <div class="num n2">2</div>
+    <div>
+      <h2>วิพากษ์: การแก้ไขข้อพิพาทนี้เหมาะสมหรือไม่ อย่างไร?</h2>
+      <div class="sub">วิเคราะห์ด้วยรูปแบบการจัดการความขัดแย้ง 5 แบบ (Thomas–Kilmann) และแนวคิดชาติพันธุ์นิยม</div>
+    </div>
+  </div>
+
+  <div class="verdict">
+    <div class="big">⚖️ เหมาะสมเพียงบางส่วน</div>
+    <div class="why">ช่วยให้การแข่งขันผ่านไปได้โดยไม่บานปลายเป็นความขัดแย้งระดับรัฐ แต่เป็นการ<b>หลีกเลี่ยงและเอาชนะ</b> ซึ่ง<b>ไม่แตะรากของปัญหา</b> คือการแย่งความเป็นเจ้าของวัฒนธรรม ผลจึงเป็น <b>แพ้ทั้งคู่ (Lose–Lose)</b></div>
+  </div>
+
+  <div class="crit">
+    <div class="card tki">
+      <div class="h">แต่ละฝ่ายเลือกจัดการความขัดแย้งแบบไหน?</div>
+      <div class="s">แกนตั้ง = ยึดประโยชน์ของตน · แกนนอน = ใส่ใจประโยชน์ของอีกฝ่าย</div>
+      <svg viewBox="0 0 430 372" width="430" height="372" font-family="Prompt" role="img" aria-label="Thomas-Kilmann conflict modes">
+        <defs>
+          <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#11877E"/></marker>
+          <marker id="ax" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#596178"/></marker>
+        </defs>
+        <rect x="40" y="8" width="380" height="320" rx="14" fill="#FBF6EE"/>
+        <line x1="40" y1="168" x2="420" y2="168" stroke="#E7DDCC" stroke-dasharray="4 5"/>
+        <line x1="230" y1="8" x2="230" y2="328" stroke="#E7DDCC" stroke-dasharray="4 5"/>
+        <!-- axes -->
+        <line x1="40" y1="332" x2="420" y2="332" stroke="#596178" stroke-width="1.6" marker-end="url(#ax)"/>
+        <line x1="36" y1="328" x2="36" y2="10" stroke="#596178" stroke-width="1.6" marker-end="url(#ax)"/>
+        <text x="230" y="356" text-anchor="middle" font-size="13" fill="#596178">ความร่วมมือ (Cooperativeness) →</text>
+        <text x="22" y="168" text-anchor="middle" font-size="13" fill="#596178" transform="rotate(-90 22 168)">การยืนยันจุดยืน (Assertiveness) →</text>
+
+        <!-- arrows to collaborating -->
+        <path d="M142,70 C220,40 280,40 318,58" fill="none" stroke="#11877E" stroke-width="2.4" stroke-dasharray="7 6" marker-end="url(#ah)"/>
+        <path d="M140,262 C230,240 300,170 340,92" fill="none" stroke="#11877E" stroke-width="2.4" stroke-dasharray="7 6" marker-end="url(#ah)"/>
+
+        <!-- mode nodes -->
+        <g>
+          <circle cx="100" cy="66" r="34" fill="#D6463A"/>
+          <text x="100" y="71" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">เอาชนะ</text>
+        </g>
+        <g>
+          <circle cx="360" cy="66" r="40" fill="#11877E"/>
+          <text x="360" y="64" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">ร่วมมือ</text>
+          <text x="360" y="82" text-anchor="middle" font-size="11.5" fill="#fff">Win–Win</text>
+        </g>
+        <g>
+          <circle cx="230" cy="168" r="30" fill="#fff" stroke="#E9A23B" stroke-width="2.5"/>
+          <text x="230" y="164" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1B2440">ประนี</text>
+          <text x="230" y="180" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1B2440">ประนอม</text>
+        </g>
+        <g>
+          <circle cx="100" cy="270" r="34" fill="#9CA3AF"/>
+          <text x="100" y="275" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">หลีกเลี่ยง</text>
+        </g>
+        <g>
+          <circle cx="360" cy="270" r="34" fill="#fff" stroke="#C9BFAE" stroke-width="2"/>
+          <text x="360" y="275" text-anchor="middle" font-size="14" font-weight="700" fill="#596178">ยอมตาม</text>
+        </g>
+
+        <!-- actor tags -->
+        <g font-size="12" font-weight="600">
+          <rect x="54" y="108" width="140" height="22" rx="11" fill="#FBE7E4" stroke="#D6463A"/>
+          <text x="124" y="123" text-anchor="middle" fill="#D6463A">กัมพูชา · IFMA · ชาวเน็ต</text>
+          <rect x="58" y="214" width="84" height="22" rx="11" fill="#1E2A56"/>
+          <text x="100" y="229" text-anchor="middle" fill="#fff">ไทย</text>
+          <rect x="300" y="116" width="118" height="22" rx="11" fill="#DDF2EF" stroke="#11877E"/>
+          <text x="359" y="131" text-anchor="middle" fill="#11877E">★ ทางที่ควรมุ่งไป</text>
+        </g>
+      </svg>
+      <div class="legend">
+        <div class="lg bad"><span class="dot"></span><span><b>สิ่งที่เกิดขึ้นจริง:</b> ฝ่ายหนึ่ง “เอาชนะ” อีกฝ่าย “หลีกเลี่ยง” → <b class="nw">แพ้ทั้งคู่</b></span></div>
+        <div class="lg good"><span class="dot"></span><span><b>สิ่งที่ควรเป็น:</b> หันหน้ามา “ร่วมมือ” หาทางออกร่วมกัน → <b class="nw">ชนะทั้งคู่</b></span></div>
+      </div>
+    </div>
+
+    <div class="pc">
+      <div class="card list ok">
+        <div class="h"><span class="ico">✓</span>ส่วนที่เหมาะสม</div>
+        <ul>
+          <li><b>ใช้สันติวิธี</b> ไทยไม่ตอบโต้ระดับรัฐ ไม่คัดค้านการจัด และเลือกส่งเรื่องผ่านช่องทางทางการ (IOC / OCA)</li>
+          <li><b>เคารพสิทธิ์ของเจ้าภาพ</b> ทำให้ซีเกมส์ดำเนินต่อได้ ไม่ทำลายภาพรวมความร่วมมือของภูมิภาค</li>
+          <li><b>อ้างอิงกติกาสากล</b> (กติกาสหพันธ์ซีเกมส์ / IFMA) แทนการใช้อารมณ์ส่วนตัว</li>
+        </ul>
+      </div>
+      <div class="card list no">
+        <div class="h"><span class="ico">✕</span>ส่วนที่ไม่เหมาะสม</div>
+        <ul>
+          <li><b>การไม่ส่งนักกีฬาคือ “การหลีกเลี่ยง”</b> ไม่มีการเจรจาหาทางออกร่วมกัน นักกีฬาเสียโอกาส การแข่งขันขาดความสมบูรณ์</li>
+          <li><b>การขู่แบนและการยืนกรานคือ “การเอาชนะ”</b> ใช้อำนาจกดดันชาติอื่นให้ต้องเลือกข้าง ทำให้กีฬากลายเป็นเรื่องการเมือง</li>
+          <li><b>ทั้งสองฝ่ายมองแบบชาติพันธุ์นิยม (Ethnocentrism)</b> ถือว่าวัฒนธรรมของตนเป็น<span class="nw">ต้นแบบ</span> ตั้งคำถามแค่ว่า “ใครเป็นเจ้าของ” จนมองข้ามรากร่วมทางประวัติศาสตร์</li>
+          <li><b>โซเชียลขยายความขัดแย้ง</b> ด้วยคำเหยียด การเหมารวม และข่าวลือ โดยไม่มีหน่วยงานใดสื่อสารเพื่อลดความตึงเครียด</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 3 ================= -->
+<section>
+  <div class="sec-head">
+    <div class="num n3">3</div>
+    <div>
+      <h2>ข้อเสนอแนวทางการแก้ไข จากความรู้ที่เรียนในห้องเรียน</h2>
+      <div class="sub">เปลี่ยนจากการหลีกเลี่ยงหรือเอาชนะ ไปสู่การร่วมมือที่ทั้งสองฝ่ายได้ประโยชน์</div>
+    </div>
+  </div>
+
+  <div class="shift">
+    <span class="q old">“ใครเป็นเจ้าของมวย?”</span>
+    <span class="arrow">➜</span>
+    <span class="q new">“เราจะดูแลมรดกร่วมนี้ด้วยกันอย่างไร?”</span>
+  </div>
+
+  <div class="sol">
+    <div class="s-card">
+      <div class="top"><span class="em">🌏</span><span class="k">01</span></div>
+      <h3>มองมวยเป็น “มรดกวัฒนธรรมร่วม”</h3>
+      <span class="concept">สัมพัทธนิยมทางวัฒนธรรม (Cultural Relativism)</span>
+      <p>มวยไทยและกุน ขแมร์เติบโตจากรากศิลปะการต่อสู้ร่วมของภูมิภาค ยอมรับได้ว่า “คล้ายกัน แต่แต่ละชาติมีเอกลักษณ์ของตน” โดยไม่ต้องเป็นของใคร<span class="nw">คนเดียว</span></p>
+    </div>
+    <div class="s-card">
+      <div class="top"><span class="em">🤝</span><span class="k">02</span></div>
+      <h3>เจรจาแบบร่วมมือ หาทางออก <span class="nw">Win–Win</span></h3>
+      <span class="concept">การร่วมมือ / การประนีประนอม (Thomas–Kilmann)</span>
+      <p>ในเวทีนานาชาติใช้ชื่อกลาง เช่น <b>“มวย (Muay)”</b> ตามกติกาสหพันธ์ซีเกมส์ หรือใช้ชื่อคู่ <b>“Muay / <span class="nw">Kun Khmer</span>”</b> ส่วนในประเทศของตนแต่ละชาติเรียกตามภาษาตนได้</p>
+    </div>
+    <div class="s-card">
+      <div class="top"><span class="em">⚖️</span><span class="k">03</span></div>
+      <h3>ใช้คนกลางไกล่เกลี่ย และวางกติกา<span class="nw">ล่วงหน้า</span></h3>
+      <span class="concept">การไกล่เกลี่ยโดยบุคคลที่สาม (Mediation)</span>
+      <p>ให้สหพันธ์ซีเกมส์ OCA หรือกลไกอาเซียนเป็นคนกลาง กำหนดหลักเกณฑ์การตั้งชื่อกีฬาพื้นบ้านให้ชัดเจน ก่อนที่เจ้าภาพจะประกาศรายการแข่งขัน</p>
+    </div>
+    <div class="s-card">
+      <div class="top"><span class="em">💬</span><span class="k">04</span></div>
+      <h3>สื่อสารข้ามวัฒนธรรมอย่างสร้างสรรค์บนโซเชียล</h3>
+      <span class="concept">การสื่อสารระหว่างวัฒนธรรม · การรู้เท่าทันสื่อ</span>
+      <p>เลิกใช้คำเหยียดและการเหมารวม ตรวจสอบ<span class="nw">ข้อเท็จจริง</span>ก่อนแชร์ และให้หน่วยงานกีฬาของทั้งสองประเทศออกแถลงการณ์ร่วมเพื่อลดกระแสความเกลียดชัง</p>
+    </div>
+    <div class="s-card">
+      <div class="top"><span class="em">🎓</span><span class="k">05</span></div>
+      <h3>แลกเปลี่ยนวัฒนธรรม และขึ้นทะเบียนร่วมกัน</h3>
+      <span class="concept">การแลกเปลี่ยนทางวัฒนธรรม (Cultural Exchange)</span>
+      <p>จัดไฟต์มิตรภาพ วิจัยประวัติศาสตร์ร่วม ค่ายเยาวชน และเสนอยูเนสโกแบบหลายประเทศ เหมือน <b class="nw">“เคบายา” (Kebaya)</b> ที่ 5 ชาติอาเซียนรวมถึงไทยเสนอร่วมกันจนได้ขึ้นทะเบียนเมื่อปี 2567</p>
+    </div>
+    <div class="s-card me">
+      <div class="top"><span class="em">🙋</span><span class="k">06</span></div>
+      <h3>สิ่งที่นักศึกษาอย่างเราทำได้ทันที</h3>
+      <span class="concept">ความฉลาดทางวัฒนธรรม (Cultural Intelligence)</span>
+      <p>เปิดใจรับฟังมุมมองอีกฝ่าย เคารพความแตกต่าง คิดก่อนคอมเมนต์ และช่วยแชร์ข้อมูลที่ถูกต้อง แทนการผลิตซ้ำถ้อยคำที่สร้างความเกลียดชัง</p>
+    </div>
+  </div>
+
+  <div class="concl">
+    <div class="ql">“</div>
+    <div>
+      <div class="h">การหลีกเลี่ยงหรือการเอาชนะทำให้ “จบเกม” แต่ไม่ได้ทำให้ “จบความขัดแย้ง”</div>
+      <p>ทางออกที่ยั่งยืนคือการร่วมมือบนพื้นฐานของความเคารพ และการยอมรับว่าไทยกับกัมพูชาต่างมีรากวัฒนธรรมร่วมกัน วัฒนธรรมจึงควรเป็นสะพานเชื่อมเพื่อนบ้าน ไม่ใช่สนามรบ</p>
+    </div>
+  </div>
+</section>
+</div>
+
+<footer>
+  <div><b>แหล่งข้อมูล:</b> Thai PBS News, “ไทยเมินส่งนักกีฬาแข่ง ‘กุน ขแมร์’ ซีเกมส์ 2023” และ “ดราม่า ‘กุน ขแมร์’ ไทยโต้กัมพูชาไม่ส่งนักกีฬาลงซีเกมส์ 2023” (2566) · The Nation Thailand, “Thailand to boycott SEA Games Muay Thai after Cambodia changes name” (2566) · RFA, “Thai Olympic Committee mum after Cambodia says kickboxing name dispute was settled” (2566) · MGR Online · Wikipedia: Kun Khmer at the 2023 SEA Games</div>
+  <div class="sign">จัดทำโดย<br><b>ศุภณัฐ สุวัฒน์วิโรจน์</b><br><span class="id">2610111102112</span></div>
+</footer>
+
+</body>
+</html>
