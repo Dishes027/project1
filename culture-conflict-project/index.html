@@ -65,6 +65,17 @@
   .bubble{background:#fff;border:1px solid #F0C4BE;border-radius:14px 14px 14px 4px;padding:7px 12px;font-size:15.5px;line-height:1.4}
   .bubble b{color:var(--red)}
 
+  .shots-h{font-family:"Prompt";font-weight:600;font-size:19px;margin-bottom:10px}
+  .shots-h span{font-family:"Sarabun";font-weight:400;font-size:15px;color:var(--muted);margin-left:8px}
+  .shots{display:flex;gap:16px;align-items:flex-start;margin-bottom:22px}
+  .shot{min-width:0;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 6px 18px rgba(27,36,64,.10)}
+  .shot img{display:block;width:100%;height:auto;border-bottom:1px solid var(--line)}
+  .shot .bar{display:flex;align-items:center;gap:8px;padding:7px 10px;background:#F1ECE3;border-bottom:1px solid var(--line);font-size:12px;color:var(--muted)}
+  .shot figcaption{padding:10px 12px 12px;font-size:15px;line-height:1.45}
+  .shot .src{margin:0 6px 4px 0}
+  .shot .dt{font-family:"Prompt";font-size:13px;color:var(--muted)}
+  .col-h{font-family:"Prompt";font-weight:700;font-size:19px;margin-bottom:12px}
+  .how{margin-top:0}
   /* timeline */
   .tl{position:relative;padding-left:26px}
   .tl::before{content:"";position:absolute;left:8px;top:8px;bottom:8px;width:3px;background:var(--line);border-radius:3px}
@@ -73,7 +84,7 @@
   .ev.r::before{border-color:var(--red)} .ev.g::before{border-color:var(--gold)}
   .ev .d{font-family:"Prompt";font-weight:600;font-size:15px;color:var(--navy)}
   .ev .x{font-size:17px;line-height:1.5}
-  .how{margin-top:6px;background:var(--gold-soft);border:1px solid #F2D7A6;border-radius:16px;padding:16px 18px}
+  .how{background:var(--gold-soft);border:1px solid #F2D7A6;border-radius:16px;padding:16px 18px}
   .how .h{font-family:"Prompt";font-weight:700;font-size:19px;margin-bottom:8px}
   .row{display:grid;grid-template-columns:118px 1fr auto;gap:10px;align-items:center;padding:7px 0;border-top:1px dashed #EBCF9C;font-size:16.5px;line-height:1.4}
   .row:first-of-type{border-top:none}
@@ -175,57 +186,40 @@
     </div>
   </div>
 
-  <div class="grid2">
-    <!-- left: news -->
-    <div class="news-wrap">
-      <div class="clip">
-        <div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">thaipbs.or.th/news/content/323764</span></div>
-        <div class="body">
-          <span class="src">Thai PBS News</span>
-          <h3>ไทยเมินส่งนักกีฬาแข่ง “กุน ขแมร์” ซีเกมส์ 2023</h3>
-          <div class="meta">ข่าวออนไลน์ · ม.ค. 2566</div>
-        </div>
-      </div>
-      <div class="clip">
-        <div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">thaipbs.or.th/news/content/323857</span></div>
-        <div class="body">
-          <span class="src">Thai PBS News</span>
-          <h3>ดราม่า “กุน ขแมร์” ไทยโต้กัมพูชาไม่ส่งนักกีฬาลงซีเกมส์ 2023</h3>
-          <div class="meta">ข่าวออนไลน์ · ม.ค. 2566</div>
-        </div>
-      </div>
-      <div class="clip">
-        <div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">nationthailand.com/thailand/general/40024514</span></div>
-        <div class="body">
-          <span class="src alt">The Nation Thailand</span>
-          <h3>Thailand to boycott SEA Games Muay Thai after Cambodia changes name</h3>
-          <div class="meta">ข่าวภาษาอังกฤษ · ม.ค. 2566</div>
-        </div>
-      </div>
-      <div class="social">
-        <div class="h">💬 กระแสบนโซเชียลมีเดีย</div>
-        <div class="bubbles">
-          <span class="bubble">ชาวเน็ตไทยตั้งฉายากัมพูชาว่า <b>“เคลมโบเดีย”</b></span>
-          <span class="bubble">ฝั่งกัมพูชา: <b>“กุน ขแมร์คือต้นแบบของมวยไทย”</b></span>
-          <span class="bubble">ข่าวลือ “บัวขาวมีเชื้อสายเขมร” → บัวขาวยืนยันว่าเป็น<b>คนไทยเชื้อสายกูย</b></span>
-          <span class="bubble"><b>สงครามคอมเมนต์</b> ไทย–กัมพูชา ลุกลามข้ามเพจข่าว</span>
-        </div>
-      </div>
-    </div>
+  <div class="shots-h">📸 ภาพข่าวต้นฉบับ <span>แคปจากเว็บไซต์ข่าวโดยตรง (20 พ.ย. 2569)</span></div>
+  <div class="shots">
+    <figure class="shot" style="flex:1.022 1 0">
+      <div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">thaipbs.or.th/news/content/323764</span></div>
+      <img src="img/thaipbs_323764.jpg" alt="Thai PBS: ไทยเมินส่งนักกีฬาแข่ง กุน ขแมร์ ซีเกมส์ 2023">
+      <figcaption><span class="src">Thai PBS</span><span class="dt">21 ม.ค. 2566</span><div>ไทยไม่ส่งนักกีฬา เพราะเจ้าภาพเปลี่ยนชื่อ “มวย” เป็น “กุน ขแมร์”</div></figcaption>
+    </figure>
+    <figure class="shot" style="flex:0.933 1 0">
+      <div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">thaipbs.or.th/news/content/323857</span></div>
+      <img src="img/thaipbs_323857.jpg" alt="Thai PBS: ดราม่า กุน ขแมร์ ไทยโต้กัมพูชาไม่ส่งนักกีฬาลงซีเกมส์ 2023">
+      <figcaption><span class="src">Thai PBS</span><span class="dt">24 ม.ค. 2566</span><div>กัมพูชาเดินหน้าจัด “กุน ขแมร์” แม้ไม่ผ่านการรับรองจาก IFMA</div></figcaption>
+    </figure>
+    <figure class="shot" style="flex:1.143 1 0">
+      <div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">nationthailand.com/thailand/general/40024514</span></div>
+      <img src="img/nation_40024514.jpg" alt="The Nation: Thailand to boycott SEA Games Muay Thai after Cambodia changes name">
+      <figcaption><span class="src alt">The Nation</span><span class="dt">1 ก.พ. 2566</span><div>ไทยประกาศบอยคอตการแข่งขันมวยในซีเกมส์ หลังกัมพูชาเปลี่ยนชื่อ</div></figcaption>
+    </figure>
+  </div>
 
-    <!-- right: timeline + how -->
+  <div class="grid2">
+    <!-- left: timeline -->
     <div class="card">
+      <div class="col-h">🗓️ ลำดับเหตุการณ์</div>
       <div class="tl">
         <div class="ev">
           <div class="d">ปี 2565</div>
           <div class="x">เจ้าภาพกัมพูชา (CAMSOC) กำหนดเรียกกีฬามวยในซีเกมส์ครั้งที่ 32 ว่า <b>“กุน ขแมร์”</b> แทนคำว่า “มวย” โดยอ้างว่าเป็นวัฒนธรรมของกัมพูชา</div>
         </div>
         <div class="ev r">
-          <div class="d">ม.ค. 2566</div>
-          <div class="x">สหพันธ์มวยไทยสมัครเล่นนานาชาติ <b>(IFMA)</b> เตือนชาติสมาชิกว่าหากส่งนักกีฬาไปแข่ง อาจถูก<b>แบนจากรายการของ IFMA 2 ปี</b> และไทยประกาศ<b>ไม่ส่งนักกีฬา</b></div>
+          <div class="d">21 ม.ค. 2566</div>
+          <div class="x">ไทยประกาศ<b>ไม่ส่งนักกีฬา</b> เพราะไม่ใช้ชื่อ “มวย” และไม่ให้ <b>IFMA</b> <span class="nw">ร่วมจัด</span> โดย IFMA เตือนว่าชาติที่ส่งนักกีฬาอาจถูก<b>แบนจากรายการของ IFMA</b></div>
         </div>
         <div class="ev">
-          <div class="d">ม.ค. 2566</div>
+          <div class="d">ปลาย ม.ค. 2566</div>
           <div class="x">คณะกรรมการโอลิมปิกแห่งประเทศไทย<b>ไม่คัดค้าน</b>การจัดแข่งขัน เพื่อไม่ให้กลายเป็นข้อพิพาทระหว่างประเทศ และส่งเรื่องผ่าน IOC / OCA</div>
         </div>
         <div class="ev g">
@@ -237,14 +231,26 @@
           <div class="x">ไม่มีข้อตกลงร่วมกันเรื่องชื่อหรือที่มาของมวย ประเด็น <span class="nw">“ใครเป็นต้นแบบ”</span> จึงยังถูกหยิบมา<b>ถกเถียงบนโซเชียล</b>ซ้ำแล้วซ้ำเล่า</div>
         </div>
       </div>
+    </div>
 
+    <!-- right: how + social -->
+    <div class="news-wrap">
       <div class="how">
         <div class="h">🔎 ข้อพิพาทถูก “แก้” อย่างไร?</div>
         <div class="row"><span class="who">ไทย</span><span>ไม่ส่งนักกีฬา ไม่โต้กลับระดับรัฐ</span><span class="tag t-av">หลีกเลี่ยง</span></div>
         <div class="row"><span class="who">กัมพูชา</span><span>ยืนกรานใช้ชื่อ “กุน ขแมร์” และจัดต่อ</span><span class="tag t-co">เอาชนะ</span></div>
         <div class="row"><span class="who">IFMA</span><span>ใช้มาตรการขู่แบนชาติที่ส่งนักกีฬา</span><span class="tag t-co">ใช้อำนาจ</span></div>
         <div class="row"><span class="who">ชาวเน็ต</span><span>ตอบโต้ด้วยอารมณ์ ใช้คำเหยียด</span><span class="tag t-co">ยกระดับ</span></div>
-        <div class="result"><b>ผลลัพธ์:</b> การแข่งขันเดินหน้าได้ แต่คำถาม “ใครเป็นเจ้าของมวย” <b>ยังไม่ถูกแก้</b> และความรู้สึกเป็นปฏิปักษ์บนโลกออนไลน์ยังคงอยู่</div>
+        <div class="result"><b>ผลลัพธ์:</b> การแข่งขันเดินหน้าได้ แต่คำถาม “ใครเป็นเจ้าของมวย” <b class="nw">ยังไม่ถูกแก้</b> และความรู้สึกเป็นปฏิปักษ์บนโลกออนไลน์ยังคงอยู่</div>
+      </div>
+      <div class="social">
+        <div class="h">💬 กระแสบนโซเชียลมีเดีย</div>
+        <div class="bubbles">
+          <span class="bubble">ชาวเน็ตไทยตั้งฉายากัมพูชาว่า <b>“เคลมโบเดีย”</b></span>
+          <span class="bubble">ฝั่งกัมพูชา: <b>“กุน ขแมร์คือต้นแบบของมวยไทย”</b></span>
+          <span class="bubble">ข่าวลือ “บัวขาวมีเชื้อสายเขมร” → บัวขาวยืนยันว่าเป็น<b>คนไทยเชื้อสายกูย</b></span>
+          <span class="bubble"><b>สงครามคอมเมนต์</b> ไทย–กัมพูชา ลุกลามข้ามเพจข่าว</span>
+        </div>
       </div>
     </div>
   </div>
@@ -415,7 +421,7 @@
 </div>
 
 <footer>
-  <div><b>แหล่งข้อมูล:</b> Thai PBS News, “ไทยเมินส่งนักกีฬาแข่ง ‘กุน ขแมร์’ ซีเกมส์ 2023” และ “ดราม่า ‘กุน ขแมร์’ ไทยโต้กัมพูชาไม่ส่งนักกีฬาลงซีเกมส์ 2023” (2566) · The Nation Thailand, “Thailand to boycott SEA Games Muay Thai after Cambodia changes name” (2566) · RFA, “Thai Olympic Committee mum after Cambodia says kickboxing name dispute was settled” (2566) · MGR Online · Wikipedia: Kun Khmer at the 2023 SEA Games</div>
+  <div><b>แหล่งข้อมูล:</b> Thai PBS News, “ไทยเมินส่งนักกีฬาแข่ง ‘กุน ขแมร์’ ซีเกมส์ 2023” และ “ดราม่า ‘กุน ขแมร์’ ไทยโต้กัมพูชาไม่ส่งนักกีฬาลงซีเกมส์ 2023” (21 และ 24 ม.ค. 2566) · The Nation Thailand, “Thailand to boycott SEA Games Muay Thai after Cambodia changes name” (1 ก.พ. 2566) · RFA, “Thai Olympic Committee mum after Cambodia says kickboxing name dispute was settled” (2566) · MGR Online · Wikipedia: Kun Khmer at the 2023 SEA Games</div>
   <div class="sign">จัดทำโดย<br><b>ศุภณัฐ สุวัฒน์วิโรจน์</b><br><span class="id">2610111102112</span></div>
 </footer>
 
